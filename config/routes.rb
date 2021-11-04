@@ -105,11 +105,35 @@ Rails.application.routes.draw do
   #  post :parse_excel, :on => :collection
   #  get :xls_download, :on => :collection
   #end
-  resources :dogs do
-    get :download_attachment, :on => :member
-    get :download_append, :on => :member
+  resources :archives, :except => [:show] do
+    resources :portfolios do
+      post :upload, :on => :member
+    end
+  end
+  resources :portfolios, :only => [] do
+    resources :file_libs do
+      get :download, :on => :member
+    end
+  end
+
+  resources :meter_reads do
     post :parse_excel, :on => :collection
-    get :xls_download, :on => :collection
+    get :meter_xls_download, :on => :collection 
+  end
+
+
+  resources :examines do
+    get :export, :on => :member 
+    get :drct_org, :on => :member 
+    post :create_drct, :on => :member
+    resources :documents do
+      get :download, :on => :member
+    end
+    resources :exm_items do
+    end
+  end
+  resources :dogs do
+    get :download_append, :on => :member
     get :query_all, :on => :collection
   end
   resources :flower

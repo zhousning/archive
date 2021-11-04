@@ -148,7 +148,7 @@ defaults:
     btn_show: 详情
     btn_delete: 删除
     btn_save: 保存
-    company_name: 山东公用水务集团物资管理系统
+    company_name: 山东公用水务集团档案管理系统
     opening: 新用户
     pending: 待审核
     rejected: 不通过
@@ -193,7 +193,17 @@ defaults:
     agree_title: 同意
     disagree: disagree
     disagree_title: 不同意
-  file_libs: &18
+  documents: &18
+    label: 历史版本
+    title: 版本
+    erb_link: 模板地址
+    html_link: 网站地址
+    status: 状态
+    status_none: 0
+    status_process: 10
+    status_success: 101
+    status_fail: 70
+  file_libs: &19
     label: 文件库
     name: 文件名
     path: 路径
@@ -205,40 +215,40 @@ defaults:
     ppt: '4'
     mp4: '5'
     txt: '6'
-  archives: &19
-    label: 档案库
+  archives: &20
+    label: 网盘
     name: 名称
     desc: 备注
-  portfolios: &20
+  portfolios: &21
     label: 文件夹
     name: 文件夹名
-  examines: &21
-    label: 考核资料自选库
+  examines: &22
+    label: 档案库
     name: 名称
-  exm_items: &22
+  exm_items: &23
     label: 一级目录
     name: 一级目录名
     hierarchy: 目录树
-  agendas: &23
+  agendas: &24
     label: 日程
     title: 标题
     content: 事务内容
     worktime: 时间
-  statistics: &24
+  statistics: &25
     label: 统计
     title: 标题
     xtitle: x轴标题
     ytitle: y轴标题
     legend: 图例
     data: 数据
-  companies: &25
+  companies: &26
     label: 公司
     area: 地区
     name: 名称
     info: 简介
     lnt: 经度
     lat: 维度
-  factories: &26
+  factories: &27
     label: 工厂
     area: 地区
     name: 名称
@@ -247,11 +257,11 @@ defaults:
     lnt: 经度
     lat: 维度
     plan: 计划
-  departments: &27
+  departments: &28
     label: 部门
     name: 名称
     info: 简介
-  charts: &28
+  charts: &29
     line: '0'
     bar: '1'
     gauge: '2'
@@ -264,7 +274,7 @@ defaults:
     table_t: table
     radar_t: radar
     scatter_3d_t: scatter_3d
-  months: &29
+  months: &30
     one: '1'
     one_t: 一月
     two: '2'
@@ -289,7 +299,7 @@ defaults:
     eleven_t: 十一月
     twelve: '12'
     twelve_t: 十二月
-  accounts: &30
+  accounts: &31
     coin: 金额
     password: 安全密码
     number: 卡号
@@ -300,7 +310,7 @@ defaults:
     award_invite_recharge: 40
     enable: enable
     disable: disable
-  wares: &31
+  wares: &32
     water_item: '0'
     sewage_item: '1'
     project_item: '2'
@@ -309,19 +319,19 @@ defaults:
     stuff: '5'
     device: '6'
     uphold: '7'
-  productions: &32
+  productions: &33
     label: 生产设备
     name: 名称
-  waters: &33
+  waters: &34
     label: 供水
     name: 名称
-  water_ones: &34
+  water_ones: &35
     label: 供水一级分类
     name: 名称
-  water_twos: &35
+  water_twos: &36
     label: 供水二级分类
     name: 名称
-  water_items: &36
+  water_items: &37
     label: 供水设备
     name: 名称
     idno: 编码
@@ -330,16 +340,16 @@ defaults:
     fct: 厂家
     desc: 备注
     count: 数量
-  sewages: &37
+  sewages: &38
     label: 污水
     name: 名称
-  sewage_ones: &38
+  sewage_ones: &39
     label: 污水一级分类
     name: 名称
-  sewage_twos: &39
+  sewage_twos: &40
     label: 污水二级分类
     name: 名称
-  sewage_items: &40
+  sewage_items: &41
     label: 污水设备
     name: 名称
     idno: 编码
@@ -348,17 +358,17 @@ defaults:
     fct: 厂家
     desc: 备注
     count: 数量
-  projects: &41
+  projects: &42
     label: 工程
     name: 名称
-  project_ones: &42
+  project_ones: &43
     label: 工程一级分类
     name: 名称
-  project_twos: &43
+  project_twos: &44
     label: 工程二级分类
     name: 名称
-  project_items: &44
-    label: 工程物资
+  project_items: &45
+    label: 工程档案
     name: 名称
     idno: 编码
     unit: 单位
@@ -366,7 +376,7 @@ defaults:
     fct: 厂家
     desc: 备注
     count: 数量
-  repair_parts: &45
+  repair_parts: &46
     label: 维修配件
     name: 名称
     idno: 编码
@@ -375,8 +385,8 @@ defaults:
     fct: 厂家
     desc: 备注
     count: 数量
-  emergencies: &46
-    label: 应急物资
+  emergencies: &47
+    label: 应急档案
     name: 名称
     idno: 编码
     unit: 单位
@@ -384,7 +394,7 @@ defaults:
     fct: 厂家
     desc: 备注
     count: 数量
-  stuffs: &47
+  stuffs: &48
     label: 化学菌剂
     name: 名称
     idno: 编码
@@ -393,7 +403,7 @@ defaults:
     fct: 厂家
     desc: 备注
     count: 重量kg
-  devices: &48
+  devices: &49
     label: 设备档案
     idno: 设备编号
     name: 设备名称
@@ -412,7 +422,7 @@ defaults:
     state_normal: 正常
     state_repair: 检修
     state_stop: 停用
-  upholds: &49
+  upholds: &50
     label: 维保记录
     uphold_date: 日期
     reason: 维保原因
@@ -437,88 +447,43 @@ development:
   states: *15
   trade_orders: *16
   extract_cashes: *17
-  file_libs: *18
-  archives: *19
-  portfolios: *20
-  examines: *21
-  exm_items: *22
-  agendas: *23
-  statistics: *24
-  companies: *25
-  factories: *26
-  departments: *27
-  charts: *28
-  months: *29
-  accounts: *30
-  wares: *31
-  productions: *32
-  waters: *33
-  water_ones: *34
-  water_twos: *35
-  water_items: *36
-  sewages: *37
-  sewage_ones: *38
-  sewage_twos: *39
-  sewage_items: *40
-  projects: *41
-  project_ones: *42
-  project_twos: *43
-  project_items: *44
-  repair_parts: *45
-  emergencies: *46
-  stuffs: *47
-  devices: *48
-  upholds: *49
-test:
-  notices: *1
-  reports: *2
-  models: *3
-  properties: *4
-  relates: *5
-  templates: *6
-  natures: *7
-  spiders: *8
-  selectors: *9
-  admins: *10
-  users: *11
-  roles: *12
-  permissions: *13
-  systems: *14
-  states: *15
-  trade_orders: *16
-  extract_cashes: *17
-  file_libs: *18
-  archives: *19
-  portfolios: *20
-  examines: *21
-  exm_items: *22
-  agendas: *23
-  statistics: *24
-  companies: *25
-  factories: *26
-  departments: *27
-  charts: *28
-  months: *29
-  accounts: *30
-  wares: *31
-  productions: *32
-  waters: *33
-  water_ones: *34
-  water_twos: *35
-  water_items: *36
-  sewages: *37
-  sewage_ones: *38
-  sewage_twos: *39
-  sewage_items: *40
-  projects: *41
-  project_ones: *42
-  project_twos: *43
-  project_items: *44
-  repair_parts: *45
-  emergencies: *46
-  stuffs: *47
-  devices: *48
-  upholds: *49
+  documents: *18
+  file_libs: *19
+  archives: *20
+  portfolios: *21
+  examines: *22
+  exm_items: *23
+  agendas: *24
+  statistics: *25
+  companies: *26
+  factories: *27
+  departments: *28
+  charts: *29
+  months: *30
+  accounts: *31
+  wares: *32
+  productions: *33
+  waters: *34
+  water_ones: *35
+  water_twos: *36
+  water_items: *37
+  sewages: *38
+  sewage_ones: *39
+  sewage_twos: *40
+  sewage_items: *41
+  projects: *42
+  project_ones: *43
+  project_twos: *44
+  project_items: *45
+  repair_parts: *46
+  emergencies: *47
+  stuffs: *48
+  devices: *49
+  upholds: *50
+  dogs:
+    label: 狗
+    name: 名称
+test: 
 production:
   notices: *1
   reports: *2
@@ -537,35 +502,36 @@ production:
   states: *15
   trade_orders: *16
   extract_cashes: *17
-  file_libs: *18
-  archives: *19
-  portfolios: *20
-  examines: *21
-  exm_items: *22
-  agendas: *23
-  statistics: *24
-  companies: *25
-  factories: *26
-  departments: *27
-  charts: *28
-  months: *29
-  accounts: *30
-  wares: *31
-  productions: *32
-  waters: *33
-  water_ones: *34
-  water_twos: *35
-  water_items: *36
-  sewages: *37
-  sewage_ones: *38
-  sewage_twos: *39
-  sewage_items: *40
-  projects: *41
-  project_ones: *42
-  project_twos: *43
-  project_items: *44
-  repair_parts: *45
-  emergencies: *46
-  stuffs: *47
-  devices: *48
-  upholds: *49
+  documents: *18
+  file_libs: *19
+  archives: *20
+  portfolios: *21
+  examines: *22
+  exm_items: *23
+  agendas: *24
+  statistics: *25
+  companies: *26
+  factories: *27
+  departments: *28
+  charts: *29
+  months: *30
+  accounts: *31
+  wares: *32
+  productions: *33
+  waters: *34
+  water_ones: *35
+  water_twos: *36
+  water_items: *37
+  sewages: *38
+  sewage_ones: *39
+  sewage_twos: *40
+  sewage_items: *41
+  projects: *42
+  project_ones: *43
+  project_twos: *44
+  project_items: *45
+  repair_parts: *46
+  emergencies: *47
+  stuffs: *48
+  devices: *49
+  upholds: *50

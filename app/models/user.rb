@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :stocks
   has_many :retrievals
   has_many :projects
+  has_many :archives
+  has_many :examines
 
   has_many :user_fcts, :dependent => :destroy
   has_many :factories, :through => :user_fcts
@@ -35,6 +37,16 @@ class User < ActiveRecord::Base
     false
   end
 
+  after_create :assign_data
+  def assign_data
+    @archive = Archive.new(:name => Time.now.strftime("%Y") + "工作材料", :user => self)
+    @archive.portfolios << Portfolio.new(:name => "公文文件", :archive => @archive)
+    @archive.portfolios << Portfolio.new(:name => "工作计划", :archive => @archive)
+    @archive.portfolios << Portfolio.new(:name => "会议记录", :archive => @archive)
+    @archive.portfolios << Portfolio.new(:name => "学习总结", :archive => @archive)
+    @archive.save
+  end
+
   #before_create :build_default_data
   #def build_default_data
   #  #build_account
@@ -47,16 +59,6 @@ class User < ActiveRecord::Base
   #  end
   #end
 
-  #after_create :assign_data
-  #def assign_data
-  #  @archive = Archive.new(:name => Time.now.strftime("%Y") + "工作材料", :user => self)
-  #  @archive.portfolios << Portfolio.new(:name => "公文文件", :archive => @archive)
-  #  @archive.portfolios << Portfolio.new(:name => "工作计划", :archive => @archive)
-  #  @archive.portfolios << Portfolio.new(:name => "会议记录", :archive => @archive)
-  #  @archive.portfolios << Portfolio.new(:name => "学习总结", :archive => @archive)
-  #  @archive.save
-  #  MeterStandard.create!(:user => self)
-  #end
 
   #after_create :set_qrcode
   #def set_qrcode
